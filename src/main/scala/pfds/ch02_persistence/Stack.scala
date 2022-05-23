@@ -2,7 +2,7 @@ package pfds.ch02_persistence
 
 import scala.List
 
-trait Stack[F[+_]]:
+trait Stack[F[_]]:
   def empty[T]: F[T]
   extension [T](x: F[T])
     def isEmpty: Boolean

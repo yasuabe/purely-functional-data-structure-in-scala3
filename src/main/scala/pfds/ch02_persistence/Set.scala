@@ -2,15 +2,15 @@ package pfds.ch02_persistence
 
 import cats.Order 
 
-trait Set[F[+_], T]:
+trait Set[F[_], T]:
   def empty: F[T]
   extension (x: F[T])
     def insert(e: T): F[T]
     def member(e: T): Boolean
 
 enum Tree[+T]:
-  case Node[A](l: Tree[A], e: A, r: Tree[A]) extends Tree[A]
-  case Empty extends Tree[Nothing]
+  case Node(l: Tree[T], e: T, r: Tree[T])
+  case Empty 
 
 given unbalancedSet[T](using o: Order[T]): Set[Tree, T] with
   import Tree.*, cats.Comparison.*
